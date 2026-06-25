@@ -1,7 +1,6 @@
-﻿import { siteFetch } from '@/lib/siteFetch'
+﻿'use client';
 
-'use client';
-
+import { siteFetch } from '@/lib/siteFetch';
 import { useState } from 'react';
 import { Wrench, Sparkles, Copy, Check, RefreshCw, AlertCircle, Shield, Quote, Edit3, BookOpenCheck, CheckCircle, Languages, Info, X } from 'lucide-react';
 

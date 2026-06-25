@@ -1,7 +1,6 @@
-﻿import { siteFetch } from '@/lib/siteFetch'
+﻿'use client';
 
-'use client';
-
+import { siteFetch } from '@/lib/siteFetch';
 import { useEffect, useState } from 'react';
 import { Users, Building, ExternalLink, AlertCircle, RefreshCw, Crown } from 'lucide-react';
 import Image from 'next/image';

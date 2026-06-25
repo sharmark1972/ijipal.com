@@ -1,7 +1,6 @@
-﻿import { siteFetch } from '@/lib/siteFetch'
+﻿'use client';
 
-'use client';
-
+import { siteFetch } from '@/lib/siteFetch';
 import { useState } from 'react';
 import { Download, Loader2, FileText, CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';

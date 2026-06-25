@@ -1,7 +1,6 @@
-﻿import { siteFetch } from '@/lib/siteFetch'
+﻿'use client';
 
-'use client';
-
+import { siteFetch } from '@/lib/siteFetch';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/shared/ui/button';

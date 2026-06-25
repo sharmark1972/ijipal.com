@@ -1,7 +1,6 @@
-﻿import { siteFetch } from '@/lib/siteFetch'
+﻿'use client';
 
-'use client';
-
+import { siteFetch } from '@/lib/siteFetch';
 import { useState } from 'react';
 import { Star } from 'lucide-react';
 import { useSession } from 'next-auth/react';

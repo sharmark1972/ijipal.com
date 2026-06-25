@@ -1,7 +1,6 @@
-﻿import { siteFetch } from '@/lib/siteFetch'
+﻿'use client';
 
-'use client';
-
+import { siteFetch } from '@/lib/siteFetch';
 import { useState } from 'react';
 import { Copy, Download, FileText } from 'lucide-react';
 import { CitationStyle } from '@/lib/citations';

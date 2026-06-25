@@ -1,7 +1,6 @@
-﻿import { siteFetch } from '@/lib/siteFetch'
+﻿'use client';
 
-'use client';
-
+import { siteFetch } from '@/lib/siteFetch';
 import { useEffect, useState, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
