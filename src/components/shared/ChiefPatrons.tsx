@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -113,7 +115,7 @@ export default function ChiefPatrons({ className = '' }: ChiefPatronsProps) {
       setLoading(true);
       setError({ hasError: false, message: '' });
       
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/chief-patrons`);
+      const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/chief-patrons`);
       
       if (!response.ok) {
         throw new Error(`Failed to fetch chief patrons: ${response.status} ${response.statusText}`);

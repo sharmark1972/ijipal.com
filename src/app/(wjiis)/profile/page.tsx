@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -58,7 +60,7 @@ export default function ProfilePage() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`);
+        const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`);
         if (response.ok) {
           const data = await response.json();
           setProfile(data);
@@ -78,7 +80,7 @@ export default function ProfilePage() {
 
     const fetchStats = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/author`);
+        const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dashboard/author`);
         if (response.ok) {
           const data = await response.json();
           setStats({
@@ -109,7 +111,7 @@ export default function ProfilePage() {
     setMessage(null);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
+      const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -405,3 +407,4 @@ export default function ProfilePage() {
     </div>
   );
 }
+

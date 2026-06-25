@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -26,7 +28,7 @@ export default function VisitorCounter() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/visitors?timeframe=all`);
+        const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/visitors?timeframe=all`);
         if (response.ok) {
           const data = await response.json();
           const totalVisitors = data.totalVisitors || 0;
@@ -152,3 +154,4 @@ export default function VisitorCounter() {
     </div>
   );
 }
+

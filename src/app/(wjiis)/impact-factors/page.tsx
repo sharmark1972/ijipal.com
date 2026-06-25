@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -30,7 +32,7 @@ export default function ImpactFactorsPage() {
   useEffect(() => {
     const fetchImpactFactors = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/impact-factors`);
+        const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/impact-factors`);
         if (!response.ok) {
           throw new Error('Failed to fetch impact factors');
         }

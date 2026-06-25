@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -26,7 +28,7 @@ export default function AuthorsPage() {
     const fetchAuthors = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/authors`);
+        const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/authors`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch authors');

@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 export async function adminFetch(
@@ -8,7 +10,7 @@ export async function adminFetch(
     'x-site-slug': 'ijipal'
   };
 
-  return fetch(input, {
+  return siteFetch(input, {
     ...init,
     headers: {
       ...(init.headers ?? {}),
@@ -16,3 +18,4 @@ export async function adminFetch(
     },
   });
 }
+

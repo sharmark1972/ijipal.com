@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
@@ -67,7 +69,7 @@ export default function EbooksPage() {
         limit: '12'
       });
 
-      const response = await fetch(`/api/ebooks?${params}`);
+      const response = await siteFetch(`/api/ebooks?${params}`);
       if (response.ok) {
         const data = await response.json();
         setEbooksData(data);
@@ -383,3 +385,4 @@ export default function EbooksPage() {
     </>
   );
 }
+

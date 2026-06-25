@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useState } from 'react';
@@ -51,7 +53,7 @@ export default function ArticleReview({
     setSubmitting(true);
 
     try {
-      const response = await fetch(`/api/papers/${paperId}/reviews`, {
+      const response = await siteFetch(`/api/papers/${paperId}/reviews`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -220,11 +222,11 @@ export default function ArticleReview({
               Review Guidelines
             </h4>
             <ul className="text-xs text-gray-600 space-y-1">
-              <li>• Be respectful and constructive in your feedback</li>
-              <li>• Focus on the content and quality of the article</li>
-              <li>• Provide specific examples to support your rating</li>
-              <li>• Avoid personal attacks or offensive language</li>
-              <li>• Your review will be visible to other readers</li>
+              <li>â€¢ Be respectful and constructive in your feedback</li>
+              <li>â€¢ Focus on the content and quality of the article</li>
+              <li>â€¢ Provide specific examples to support your rating</li>
+              <li>â€¢ Avoid personal attacks or offensive language</li>
+              <li>â€¢ Your review will be visible to other readers</li>
             </ul>
           </div>
         </form>
@@ -232,3 +234,4 @@ export default function ArticleReview({
     </div>
   );
 }
+

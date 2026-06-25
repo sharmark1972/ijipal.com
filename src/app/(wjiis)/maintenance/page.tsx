@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -22,7 +24,7 @@ export default function MaintenancePage() {
     // Fetch maintenance information
     const fetchMaintenanceInfo = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/maintenance/info`);
+        const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/maintenance/info`);
         if (response.ok) {
           const data = await response.json();
           setMaintenanceInfo({
@@ -44,7 +46,7 @@ export default function MaintenancePage() {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/maintenance/verify`, {
+      const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/maintenance/verify`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -155,7 +157,7 @@ export default function MaintenancePage() {
         {/* Footer */}
         <div className="text-center text-sm text-gray-500">
           <p>Thank you for your patience!</p>
-         158: <p className="mt-1">© 2025 IJARCM. All rights reserved.</p>
+         158: <p className="mt-1">Â© 2025 IJARCM. All rights reserved.</p>
         </div>
       </div>
     </div>

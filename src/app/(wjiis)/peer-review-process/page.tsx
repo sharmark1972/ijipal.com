@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -98,7 +100,7 @@ export default function PeerReviewProcessPage() {
   const fetchProcesses = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/peer-review-process?isActive=true`);
+      const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/peer-review-process?isActive=true`);
       if (!response.ok) {
         throw new Error('Failed to fetch peer review processes');
       }
@@ -257,3 +259,4 @@ export default function PeerReviewProcessPage() {
     </>
   );
 }
+

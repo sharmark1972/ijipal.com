@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -129,7 +131,7 @@ function prefetchCriticalResources() {
   criticalEndpoints.forEach(endpoint => {
     if ('requestIdleCallback' in window) {
       requestIdleCallback(() => {
-        fetch(endpoint, { method: 'HEAD' }).catch(() => {});
+        siteFetch(endpoint, { method: 'HEAD' }).catch(() => {});
       });
     }
   });

@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -366,7 +368,7 @@ export default function SubmitPaper() {
               className="text-sm font-semibold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1"
             >
               View Publication Fees & APC Calculator
-              <span>→</span>
+              <span>â†’</span>
             </Link>
           </div>
         </div>

@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useState } from 'react';
@@ -65,7 +67,7 @@ export default function ArticleGenerator() {
     setSuccess(false);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article-generator/generate`, {
+      const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article-generator/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -92,7 +94,7 @@ export default function ArticleGenerator() {
     if (!generatedContent) return;
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article-generator/pdf`, {
+      const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article-generator/pdf`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -405,3 +407,4 @@ export default function ArticleGenerator() {
     </div>
   );
 }
+

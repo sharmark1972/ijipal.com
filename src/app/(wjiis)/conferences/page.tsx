@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -41,7 +43,7 @@ export default function ConferencesPage() {
   const fetchConferences = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/conferences`);
+      const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/conferences`);
       if (!response.ok) {
         throw new Error('Failed to fetch conferences');
       }

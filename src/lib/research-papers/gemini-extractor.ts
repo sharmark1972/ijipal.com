@@ -1,3 +1,4 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export interface GeminiExtractedData {
@@ -13,7 +14,7 @@ export interface GeminiExtractedData {
   extractionMethod: 'gemini' | 'zai' | 'basic';
 }
 
-// ─── Metadata Extraction Prompt ───────────────────────────────────────────────
+// â”€â”€â”€ Metadata Extraction Prompt â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const METADATA_PROMPT = `You are a research paper metadata extractor.
 
@@ -28,7 +29,7 @@ Fields to extract:
 - keywords: Array of keywords
 
 Abstract rewriting rules:
-- Rewrite the abstract completely in your own words — do NOT copy sentences verbatim from the paper
+- Rewrite the abstract completely in your own words â€” do NOT copy sentences verbatim from the paper
 - Preserve the original meaning, research findings, methodology, and conclusions fully
 - Maximum 148 words, no filler phrases
 - Write in clear, formal, academic English that sounds naturally human
@@ -36,8 +37,8 @@ Abstract rewriting rules:
 - Paraphrase naturally so the result is plagiarism-free
 
 Rules:
-- title must be clean — remove surrounding quotes if any
-- authors must be individual names — split comma/semicolon separated names properly
+- title must be clean â€” remove surrounding quotes if any
+- authors must be individual names â€” split comma/semicolon separated names properly
 - Remove labels like (Supervisor), (Co-author), (Guide) from author names
 - abstract must be the actual abstract, not introduction
 - keywords must be individual items in an array
@@ -56,27 +57,27 @@ Return ONLY this JSON structure:
 Research paper text:
 `;
 
-// ─── Document Rewrite Prompt ───────────────────────────────────────────────────
+// â”€â”€â”€ Document Rewrite Prompt â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const DOCUMENT_REWRITE_PROMPT = `You are a research paper editor. Rewrite the following research paper section text according to these rules:
 
-1. Rewrite the entire text in human-like, natural academic English — avoid robotic, repetitive, or overly passive phrasing
-2. Remove all plagiarism — do not copy sentences verbatim
+1. Rewrite the entire text in human-like, natural academic English â€” avoid robotic, repetitive, or overly passive phrasing
+2. Remove all plagiarism â€” do not copy sentences verbatim
 3. Preserve the original meaning, context, findings, methodology, and conclusions completely
-4. Keep the same word count — do not add or remove content
-5. Do not modify any table content — return tables exactly as received
-6. Do not change section headings — use them exactly as-is, do not shorten, rephrase, or alter them in any way
+4. Keep the same word count â€” do not add or remove content
+5. Do not modify any table content â€” return tables exactly as received
+6. Do not change section headings â€” use them exactly as-is, do not shorten, rephrase, or alter them in any way
 7. Do not add new information, examples, or explanations
 8. Do not remove any information
 9. Maintain the same structure and flow as the original
-10. If the section is a References or Bibliography section — return it completely unchanged, word for word, exactly as received
+10. If the section is a References or Bibliography section â€” return it completely unchanged, word for word, exactly as received
 
 Return ONLY the rewritten text. No explanation, no comments, no markdown formatting.
 
 Section text:
 `;
 
-// ─── Public Functions ──────────────────────────────────────────────────────────
+// â”€â”€â”€ Public Functions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export async function tryGeminiOnly(plainText: string): Promise<Omit<GeminiExtractedData, 'extractionMethod'> | null> {
   const apiKey = process.env.GEMINI_API_KEY;
@@ -104,7 +105,7 @@ export async function rewriteSectionContent(content: string): Promise<string | n
   return null;
 }
 
-// ─── Internal Functions ────────────────────────────────────────────────────────
+// â”€â”€â”€ Internal Functions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function tryGemini(apiKey: string, textSample: string): Promise<Omit<GeminiExtractedData, 'extractionMethod'> | null> {
   try {
@@ -120,7 +121,7 @@ async function tryGemini(apiKey: string, textSample: string): Promise<Omit<Gemin
 
 async function tryZai(apiKey: string, textSample: string): Promise<Omit<GeminiExtractedData, 'extractionMethod'> | null> {
   try {
-    const response = await fetch('https://api.z.ai/api/paas/v4/chat/completions', {
+    const response = await siteFetch('https://api.z.ai/api/paas/v4/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -146,7 +147,7 @@ async function tryZai(apiKey: string, textSample: string): Promise<Omit<GeminiEx
   }
 }
 
-// ─── Document Rewrite Internal Functions ──────────────────────────────────────
+// â”€â”€â”€ Document Rewrite Internal Functions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 async function rewriteWithGemini(apiKey: string, content: string): Promise<string | null> {
   try {
@@ -163,7 +164,7 @@ async function rewriteWithGemini(apiKey: string, content: string): Promise<strin
 
 async function rewriteWithZai(apiKey: string, content: string): Promise<string | null> {
   try {
-    const response = await fetch('https://api.z.ai/api/paas/v4/chat/completions', {
+    const response = await siteFetch('https://api.z.ai/api/paas/v4/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -189,7 +190,7 @@ async function rewriteWithZai(apiKey: string, content: string): Promise<string |
   }
 }
 
-// ─── Response Parsers ──────────────────────────────────────────────────────────
+// â”€â”€â”€ Response Parsers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function parseMetadataResponse(raw: string): Omit<GeminiExtractedData, 'extractionMethod'> | null {
   try {
@@ -217,3 +218,4 @@ function parseMetadataResponse(raw: string): Omit<GeminiExtractedData, 'extracti
     return null;
   }
 }
+

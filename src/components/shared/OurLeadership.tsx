@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -93,7 +95,7 @@ export default function OurLeadership({ className = '' }: OurLeadershipProps) {
       setLoading(true);
       setError({ hasError: false, message: '' });
       
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team-members`);
+      const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/team-members`);
       
       if (!response.ok) {
         throw new Error(`Failed to fetch team members`);
@@ -155,3 +157,4 @@ export default function OurLeadership({ className = '' }: OurLeadershipProps) {
     </div>
   );
 }
+

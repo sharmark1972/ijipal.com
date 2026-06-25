@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
@@ -72,7 +74,7 @@ export default function AnimationDisplay() {
 
   const fetchActiveAnimation = useCallback(async () => {
     try {
-      const response = await fetch(`/api/animations/active?t=${Date.now()}`);
+      const response = await siteFetch(`/api/animations/active?t=${Date.now()}`);
       if (response.ok) {
         const data = await response.json();
         setActiveAnimation(data);
@@ -147,3 +149,4 @@ export default function AnimationDisplay() {
 
   return renderAnimation();
 }
+

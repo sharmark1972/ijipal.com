@@ -1,3 +1,5 @@
+﻿import { siteFetch } from '@/lib/siteFetch'
+
 'use client';
 
 import { useState, useEffect, useCallback, Suspense } from 'react';
@@ -32,7 +34,7 @@ function ResetPasswordContent() {
     }
 
     try {
-      const response = await fetch(`/api/auth/reset-password?token=${token}`);
+      const response = await siteFetch(`/api/auth/reset-password?token=${token}`);
       
       if (!response.ok) {
         const errorData = await response.json();
@@ -76,7 +78,7 @@ function ResetPasswordContent() {
     }
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/reset-password`, {
+      const response = await siteFetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/reset-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
